@@ -10,7 +10,7 @@ const getFolders = async (): Promise<galleryProperty[]> => {
     const foldersFound: galleryProperty[] = [];
     console.log("getFolders", __dirname);
 
-    const directoryPath = path.join(__dirname, "../../../public/");
+    const directoryPath = "./public/";
     const files = fs.readdirSync(directoryPath);
 
     files.forEach(async (file) => {
