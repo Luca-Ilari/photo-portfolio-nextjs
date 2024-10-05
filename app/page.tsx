@@ -5,12 +5,10 @@ import Link from "next/link";
 import Image from "next/image";
 import { galleryProperty, getGallerySettings } from "@/actions/actions";
 
-const getFolders = async (): Promise<galleryProperty[]> => {
+async function getFolders(): Promise<galleryProperty[]> {
     "use server";
     const foldersFound: galleryProperty[] = [];
-    console.log("getFolders", __dirname);
-
-    const directoryPath = "./public/";
+    const directoryPath = path.join(__dirname, "../../../public/");
     const files = fs.readdirSync(directoryPath);
 
     files.forEach(async (file) => {
@@ -20,12 +18,10 @@ const getFolders = async (): Promise<galleryProperty[]> => {
     });
 
     return foldersFound;
-};
+}
 
 export default async function Home() {
     const folders: galleryProperty[] = await getFolders();
-    console.log("folders", folders);
-
     return (
         <>
             <div className="container">
