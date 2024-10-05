@@ -3,25 +3,188 @@
 @tailwind utilities;
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+    --background: #ffffff;
+    --foreground: #171717;
 }
 
 @media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+    :root {
+        --background: #0a0a0a;
+        --foreground: #ededed;
+    }
 }
 
 body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+    background-color: black;
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-attachment: fixed;
+    background-image: radial-gradient(rgba(0, 21, 97, 0.75), black 120%);
+    height: 100vh;
+    margin: 0;
+    padding: 2rem;
+    color: white;
+
+    text-shadow: 0 0 5px #c8c8c8;
+    &::after {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background: repeating-linear-gradient(
+            0deg,
+            rgba(black, 0.15),
+            rgba(black, 0.15) 1px,
+            transparent 1px,
+            transparent 2px
+        );
+    }
 }
 
 @layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
+    .text-balance {
+        text-wrap: balance;
+    }
+}
+
+/*Modal---------------------------------------------------*/
+.modal {
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9); /* Dark background with opacity */
+    display: flex;
+    justify-content: center;
+    align-items: center; /* Centering the image */
+    overflow: hidden;
+}
+
+.modal-image-container {
+    position: relative;
+    width: 90%; /* Adjust the width based on the desired responsiveness */
+    height: 90%; /* Adjust the height based on the desired responsiveness */
+}
+
+.close {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    color: #f1f1f1;
+    font-size: 35px;
+    font-weight: bold;
+    cursor: pointer;
+    z-index: 1001; /* Ensures the close button is above the image */
+}
+
+.close:hover,
+.close:focus {
+    color: #bbb;
+    text-decoration: none;
+}
+
+@media (max-width: 768px) {
+    .modal-image-container {
+        width: 95%;
+        height: 80%;
+    }
+
+    .close {
+        font-size: 30px;
+    }
+}
+
+@media (max-width: 480px) {
+    .modal-image-container {
+        width: 100%;
+        height: 80%;
+    }
+
+    .close {
+        font-size: 25px;
+    }
+}
+
+/*GALLERY--------------------------------------*/
+
+.gallery-container {
+    margin: 20px auto;
+}
+
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+    margin: 20px auto;
+    max-width: 100%;
+}
+.gallery-item {
+    /* border-radius: 5px; */
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.2s ease-in-out;
+}
+
+.gallery-item img:hover {
+    transform: scale(1.05);
+}
+
+/* Responsive adjustments */
+@media (max-width: 1400px) {
+    .gallery {
+        grid-template-columns: repeat(3, 1fr); /* Still 3 columns on screens up to 1400px */
+        gap: 10px;
+    }
+}
+@media (min-width: 1200px) {
+    .gallery-container {
+        max-width: 80vw;
+    }
+}
+@media (max-width: 768px) {
+    .gallery {
+        grid-template-columns: repeat(2, 1fr); /* 2 columns for tablets */
+        gap: 6px;
+    }
+}
+
+@media (max-width: 480px) {
+    .gallery {
+        grid-template-columns: repeat(1, 1fr); /* 1 column for small screens like mobile */
+        gap: 5px;
+    }
+}
+
+/*GALLERY PREVIEW*/
+.container {
+    padding: 75px 0;
+    margin: 0 auto;
+    width: 1140px;
+}
+
+.gallery-wrap {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 70vh;
+}
+
+.item {
+    flex: 1;
+    height: 100%;
+    transition: flex 0.8s ease;
+    position: relative;
+}
+
+.item:hover {
+    flex: 3; /* Instead of flex: 7 */
 }
