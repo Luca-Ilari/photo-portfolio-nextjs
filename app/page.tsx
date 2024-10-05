@@ -24,6 +24,8 @@ const getFolders = async (): Promise<galleryProperty[]> => {
 
 export default async function Home() {
     const folders: galleryProperty[] = await getFolders();
+    console.log("folders", folders);
+
     return (
         <>
             <div className="container">
