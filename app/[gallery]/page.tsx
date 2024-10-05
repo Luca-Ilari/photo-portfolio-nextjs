@@ -2,8 +2,8 @@
 import path from "path";
 import fs from "fs";
 import Gallery from "@/components/Gallery";
-import { galleryProperty, getGallerySettings, imagesProperty } from "../page";
 import GalleryDescription from "@/components/GalleryDescription";
+import { galleryProperty, getGallerySettings, imagesProperty } from "@/actions/actions";
 
 const getImageSize = (filePaths: string) => {
     const sizeOf = require("image-size");

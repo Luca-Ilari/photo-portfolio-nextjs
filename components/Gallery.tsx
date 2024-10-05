@@ -1,9 +1,9 @@
 "use client";
 
-import { imagesProperty } from "@/app/page";
 import Image from "next/image";
 import { ReactElement, useState } from "react";
 import FullScreenImg from "./FullScreenImg";
+import { imagesProperty } from "@/actions/actions";
 
 const Gallery = ({
     images,
