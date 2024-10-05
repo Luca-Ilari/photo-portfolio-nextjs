@@ -8,7 +8,7 @@ import { galleryProperty, getGallerySettings } from "@/actions/actions";
 const getFolders = async (): Promise<galleryProperty[]> => {
     "use server";
     const foldersFound: galleryProperty[] = [];
-    const directoryPath = path.join("./public/");
+    const directoryPath = path.join(__dirname, "../../../public/");
     const files = fs.readdirSync(directoryPath);
 
     files.forEach(async (file) => {
