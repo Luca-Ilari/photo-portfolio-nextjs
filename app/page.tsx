@@ -12,7 +12,7 @@ async function getFolders(): Promise<galleryProperty[]> {
     const files = fs.readdirSync(directoryPath);
 
     files.forEach(async (file) => {
-        if (fs. existsSync("./public/" + file)) {
+        if (fs.existsSync("./public/" + file)) {
             foldersFound.push(await getGallerySettings(file));
         }
     });
