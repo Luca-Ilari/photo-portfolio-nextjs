@@ -25,7 +25,7 @@ const searchFileInDir = (dirPath: string, fileName: string) => {
         const filePath = path.join(dirPath, file);
 
         if (file.endsWith(fileName)) {
-            console.log("FOUND:", filePath);
+            //console.log("FOUND:", filePath);
             return filePath;
         }
     }
@@ -57,4 +57,21 @@ export async function getGallerySettings(folderName: string): Promise<galleryPro
         }
     }
     return { title: folderName, path: folderName, preview_image: "", date: "" };
+}
+
+export async function getFolders(): Promise<galleryProperty[]> {
+    "use server";
+    const foldersFound: galleryProperty[] = [];
+    const directoryPath = path.join(__dirname, "../../../public/");
+    const files = fs.readdirSync(directoryPath);
+
+    files.forEach(async (file) => {
+        console.log("IS DIR", fs.statSync("./public/" + file).isDirectory());
+        console.log("PWD", __dirname);
+        if (fs.statSync("./public/" + file).isDirectory()) {
+            foldersFound.push(await getGallerySettings(file));
+        }
+    });
+
+    return foldersFound;
 }

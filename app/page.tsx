@@ -1,24 +1,8 @@
 "use server";
-import path from "path";
-import fs from "fs";
+
 import Link from "next/link";
 import Image from "next/image";
-import { galleryProperty, getGallerySettings } from "@/actions/actions";
-
-async function getFolders(): Promise<galleryProperty[]> {
-    "use server";
-    const foldersFound: galleryProperty[] = [];
-    const directoryPath = path.join(__dirname, "../../../public/");
-    const files = fs.readdirSync(directoryPath);
-
-    files.forEach(async (file) => {
-        if (fs.statSync("./public/" + file).isDirectory()) {
-            foldersFound.push(await getGallerySettings(file));
-        }
-    });
-
-    return foldersFound;
-}
+import { galleryProperty, getFolders } from "@/actions/actions";
 
 export default async function Home() {
     const folders: galleryProperty[] = await getFolders();
