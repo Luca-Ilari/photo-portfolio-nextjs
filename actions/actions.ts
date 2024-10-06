@@ -18,13 +18,12 @@ export type galleryProperty = {
 };
 
 const customIsDir = (path: string) => {
-    fs.access(path, function (error) {
-        if (error) {
-            return false;
-        } else {
-            return true;
-        }
-    });
+    try {
+        fs.accessSync(path);
+        return true;
+    } catch (error) {
+        return false;
+    }
 };
 
 const searchFileInDir = (dirPath: string, fileName: string) => {
