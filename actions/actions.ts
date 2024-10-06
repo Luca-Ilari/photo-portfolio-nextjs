@@ -19,9 +19,7 @@ export type galleryProperty = {
 
 const customIsDir = (path: string) => {
     try {
-        fs.readdirSync(path).forEach((file) => {
-            console.log(file);
-        });
+        fs.readdirSync(path);
         return true;
     } catch (error) {
         return false;
@@ -77,11 +75,6 @@ export async function getFolders(): Promise<galleryProperty[]> {
     const files = fs.readdirSync(directoryPath);
 
     files.forEach(async (file) => {
-        console.log("IS DIR", file, customIsDir(directoryPath + file));
-        console.log("PWD", __dirname);
-
-        console.log("dirPath", directoryPath);
-
         if (customIsDir(directoryPath + file)) {
             foldersFound.push(await getGallerySettings(file));
         }
