@@ -12,7 +12,7 @@ const GalleryDescription = ({ title, date }: { title: string; date: string }) =>
     const [text, helper] = useTypewriter({
         words: [title],
         onLoopDone: secondLineStart,
-        typeSpeed: 70,
+        typeSpeed: 40,
     });
 
     return (
@@ -28,7 +28,7 @@ const GalleryDescription = ({ title, date }: { title: string; date: string }) =>
                             words={[date]}
                             cursor
                             cursorStyle="█"
-                            typeSpeed={70}
+                            typeSpeed={50}
                             delaySpeed={1110}
                         />
                     </h2>
