@@ -71,8 +71,16 @@ export async function getGallerySettings(folderName: string): Promise<galleryPro
 export async function getFolders(): Promise<galleryProperty[]> {
     "use server";
     const foldersFound: galleryProperty[] = [];
-    const directoryPath = path.join(__dirname, "../../../public/");
-    const files = fs.readdirSync(directoryPath);
+    const directoryPath = "./public/";
+    let files;
+    console.log("1.DIRPATH", directoryPath);
+    try {
+        files = fs.readdirSync(directoryPath);
+    } catch (error) {
+        console.log(error);
+        console.log("DIRPATH", directoryPath);
+        return [];
+    }
 
     files.forEach(async (file) => {
         if (customIsDir(directoryPath + file)) {
