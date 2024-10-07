@@ -4,6 +4,7 @@ import fs from "fs";
 import Gallery from "@/components/Gallery";
 import GalleryDescription from "@/components/GalleryDescription";
 import { galleryProperty, getGallerySettings, imagesProperty } from "@/actions/actions";
+import { notFound } from "next/navigation";
 
 const getImageSize = (filePaths: string) => {
     const sizeOf = require("image-size");
@@ -20,7 +21,12 @@ const getImages = async (galleryName: string): Promise<imagesProperty[]> => {
     const allowedFileType = [".png", ".jpeg", ".jpg", ".gif"];
     const directoryPath = path.join(__dirname, "../../../../public/" + galleryName);
     const fileNamesProperty: imagesProperty[] = [];
-    const files = fs.readdirSync(directoryPath);
+    let files;
+    try {
+        files = fs.readdirSync(directoryPath);
+    } catch (error) {
+        notFound();
+    }
 
     files.forEach((fileName) => {
         const filePath: string = "./public/" + galleryName + "/" + fileName;
