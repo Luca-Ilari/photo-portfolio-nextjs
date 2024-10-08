@@ -20,7 +20,7 @@ export default async function Home() {
                                         fill
                                         style={{objectFit: "cover"}}
                                         alt=""
-                                        quality={100}
+                                        quality={50}
                                     />
                                 <span style={{
                                     position: "absolute",
