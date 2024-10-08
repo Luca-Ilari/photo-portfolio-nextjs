@@ -26,6 +26,7 @@ body {
     color: white;
 
     text-shadow: 0 0 5px #c8c8c8;
+
     &::after {
         position: absolute;
         top: 0;
@@ -33,11 +34,11 @@ body {
         width: 100vw;
         height: 100vh;
         background: repeating-linear-gradient(
-            0deg,
-            rgba(black, 0.15),
-            rgba(black, 0.15) 1px,
-            transparent 1px,
-            transparent 2px
+                0deg,
+                rgba(black, 0.15),
+                rgba(black, 0.15) 1px,
+                transparent 1px,
+                transparent 2px
         );
     }
 }
@@ -121,6 +122,7 @@ body {
     margin: 20px auto;
     max-width: 100%;
 }
+
 .gallery-item {
     /* border-radius: 5px; */
     overflow: hidden;
@@ -145,11 +147,13 @@ body {
         gap: 10px;
     }
 }
+
 @media (min-width: 1200px) {
     .gallery-container {
         max-width: 80vw;
     }
 }
+
 @media (max-width: 768px) {
     .gallery {
         grid-template-columns: repeat(2, 1fr); /* 2 columns for tablets */
@@ -168,7 +172,7 @@ body {
 .container {
     padding: 75px 0;
     margin: 0 auto;
-    width: 1140px;
+    width: 70%;
 }
 
 .gallery-wrap {
@@ -187,4 +191,17 @@ body {
 
 .item:hover {
     flex: 3; /* Instead of flex: 7 */
+}
+
+
+@media (max-width: 768px) {
+    .gallery-wrap {
+        flex-direction: column; /* Change to column for vertical layout on smaller screens */
+    }
+    .item{
+        flex: 1;
+    }
+    .container {
+        width: 90%;
+    }
 }
