@@ -190,9 +190,8 @@ body {
 }
 
 .item:hover {
-    flex: 3; /* Instead of flex: 7 */
+    flex: 3;
 }
-
 
 @media (max-width: 768px) {
     .gallery-wrap {

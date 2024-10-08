@@ -28,7 +28,7 @@ const Gallery = ({
                                     alt=""
                                     width={v.width / 3} //should be changed
                                     height={v.height / 3} //should be changed
-                                    quality={"80"}
+                                    quality={"70"}
                                     onClick={() => {
                                         setOpenedImage(v.fileUrl);
                                     }}

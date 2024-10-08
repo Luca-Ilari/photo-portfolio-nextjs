@@ -22,13 +22,16 @@ export default async function Home() {
                                         alt=""
                                         quality={100}
                                     />
-                                </Link>
-                                <p style={{
+                                <span style={{
                                     position: "absolute",
                                     bottom: 10,
                                     width: "100%",
                                     textAlign: "center"
-                                }}>{v.title}</p>
+                                }}>
+                                    <p>{v.title}</p>
+                                    <p>{v.date}</p>
+                                </span>
+                                </Link>
                             </div>
                         );
                     })}
