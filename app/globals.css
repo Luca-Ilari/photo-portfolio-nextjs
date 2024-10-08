@@ -172,7 +172,7 @@ body {
 .container {
     padding: 75px 0;
     margin: 0 auto;
-    width: 70%;
+    width: 80%;
 }
 
 .gallery-wrap {
@@ -197,11 +197,15 @@ body {
 @media (max-width: 768px) {
     .gallery-wrap {
         flex-direction: column; /* Change to column for vertical layout on smaller screens */
+        height: 100vh;
     }
-    .item{
+
+    .item {
         flex: 1;
     }
+
     .container {
+        padding: 10px;
         width: 90%;
     }
 }
