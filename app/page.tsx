@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import {galleryProperty, getFolders} from "@/actions/actions";
+import { galleryProperty, getFolders } from "@/actions/actions";
 
 export default async function Home() {
     const folders: galleryProperty[] = await getFolders();
@@ -18,19 +18,22 @@ export default async function Home() {
                                     <Image
                                         src={"/" + v.preview_image}
                                         fill
-                                        style={{objectFit: "cover"}}
+                                        style={{ objectFit: "cover" }}
                                         alt=""
                                         quality={50}
                                     />
-                                <span style={{
-                                    position: "absolute",
-                                    bottom: 10,
-                                    width: "100%",
-                                    textAlign: "center"
-                                }}>
-                                    <p>{v.title}</p>
-                                    <p>{v.date}</p>
-                                </span>
+                                    <div className="div-gradient"></div>
+                                    <span
+                                        style={{
+                                            position: "absolute",
+                                            bottom: 10,
+                                            width: "100%",
+                                            textAlign: "center",
+                                        }}
+                                    >
+                                        <p>{v.title}</p>
+                                        <p>{v.date}</p>
+                                    </span>
                                 </Link>
                             </div>
                         );
