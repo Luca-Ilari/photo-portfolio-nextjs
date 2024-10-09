@@ -6,10 +6,10 @@ import FullScreenImg from "./FullScreenImg";
 import { imagesProperty } from "@/actions/actions";
 
 const Gallery = ({
-    images,
-    galleryName,
-    children,
-}: {
+                     images,
+                     galleryName,
+                     children,
+                 }: {
     galleryName: string;
     images: imagesProperty[];
     children: ReactElement;
@@ -21,10 +21,13 @@ const Gallery = ({
                 {children}
                 <div className="gallery">
                     {images.map((v, idx) => {
+
                         return (
                             <div className="gallery-item" key={idx}>
                                 <Image
                                     src={v.fileUrl}
+                                    placeholder='blur'
+                                    blurDataURL={"/_next/image?url=" + v.fileUrl + "&w=2048&q=1"}
                                     alt=""
                                     width={v.width / 3} //should be changed
                                     height={v.height / 3} //should be changed
@@ -38,7 +41,7 @@ const Gallery = ({
                     })}
                 </div>
             </div>
-            <FullScreenImg imagePath={openedImage} setImagePath={setOpenedImage} />
+            <FullScreenImg imagePath={openedImage} setImagePath={setOpenedImage}/>
         </>
     );
 };
