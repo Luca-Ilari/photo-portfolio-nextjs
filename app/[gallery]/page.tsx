@@ -54,9 +54,7 @@ const GalleryPage = async ({ params }: { params: { gallery: string } }) => {
     return (
         <>
             <Gallery galleryName={params.gallery} images={images}>
-                <>
-                    <GalleryDescription title={gallerySettings.title} date={gallerySettings.date} />
-                </>
+                <GalleryDescription title={gallerySettings.title} date={gallerySettings.date} />
             </Gallery>
         </>
     );

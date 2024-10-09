@@ -17,21 +17,20 @@ const GalleryDescription = ({ title, date }: { title: string; date?: string }) =
 
     return (
         <>
-            <div style={{ height: "3rem" }}>
-                <h1>
+            <div className="desc-text">
+                <h3>
                     {text}
                     {!start && <Cursor cursorStyle={"█"} />}
-                </h1>
+                </h3>
                 {date && start === true ? (
-                    <h2>
+                    <h3>
                         <Typewriter
                             words={["date: " + date]}
                             cursor
                             cursorStyle="█"
                             typeSpeed={50}
-                            delaySpeed={1110}
                         />
-                    </h2>
+                    </h3>
                 ) : null}
             </div>
         </>
