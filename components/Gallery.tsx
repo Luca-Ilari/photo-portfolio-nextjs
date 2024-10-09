@@ -26,8 +26,6 @@ const Gallery = ({
                             <div className="gallery-item" key={idx}>
                                 <Image
                                     src={v.fileUrl}
-                                    placeholder='blur'
-                                    blurDataURL={"/_next/image?url=" + v.fileUrl + "&w=2048&q=1"}
                                     alt=""
                                     width={v.width / 3} //should be changed
                                     height={v.height / 3} //should be changed
