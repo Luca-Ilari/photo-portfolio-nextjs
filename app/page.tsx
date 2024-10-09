@@ -20,7 +20,7 @@ export default async function Home() {
                                         fill
                                         style={{ objectFit: "cover" }}
                                         alt=""
-                                        quality={50}
+                                        quality={60}
                                     />
                                     <div className="div-gradient"></div>
                                     <span

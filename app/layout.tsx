@@ -13,7 +13,7 @@ import "./globals.css";
 //     weight: "100 900",
 // });
 
-const myFont = localFont({ src: "./fonts/JetBrainsMono-Bold.woff2" });
+const myFont = localFont({ src: "./fonts/JetBrainsMono-Bold.woff2"});
 
 export const metadata: Metadata = {
     title: "Luca Ilari photos",

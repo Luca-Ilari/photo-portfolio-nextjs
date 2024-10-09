@@ -1,10 +1,10 @@
 "use client";
 import Image from "next/image";
 
-const FullScreenImg = ({ imagePath, setImagePath }: { imagePath: string; setImagePath: any }) => {
+const FullScreenImg = ({imagePath, setImagePath}: { imagePath: string; setImagePath: any }) => {
     return (
         <>
-            <div className="modal" style={{ display: imagePath ? "" : "none" }}>
+            <div className="modal" style={{display: imagePath ? "" : "none"}}>
                 <span
                     className="close"
                     onClick={() => {
@@ -14,14 +14,16 @@ const FullScreenImg = ({ imagePath, setImagePath }: { imagePath: string; setImag
                     &times;
                 </span>
                 <div className="modal-image-container">
-                    <Image
-                        src={imagePath}
-                        alt="Full size image"
-                        fill
-                        style={{ objectFit: "contain" }}
-                        priority={true}
-                        quality={"100"}
-                    />
+                    {imagePath === "" ? null :
+                        <Image
+                            src={imagePath}
+                            alt="Full size image"
+                            fill
+                            style={{objectFit: "contain"}}
+                            priority={true}
+                            quality={"100"}
+                        />
+                    }
                 </div>
             </div>
         </>
