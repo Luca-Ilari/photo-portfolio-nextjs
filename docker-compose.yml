@@ -1,0 +1,14 @@
+version: '3.8'
+
+services:
+  app:
+    image: node:20.12.2
+    working_dir: /app
+    volumes:
+      - .:/app
+      - ${PUBLIC_DIR}:/app/public
+      - /app/node_modules
+    ports:
+      - "3000:3000"
+    command: sh -c "npm install && npm run build && npm start"
+
