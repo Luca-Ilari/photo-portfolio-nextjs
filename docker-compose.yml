@@ -1,14 +1,11 @@
 version: '3.8'
-
 services:
   app:
-    image: node:20.12.2
-    working_dir: /app
-    volumes:
-      - .:/app
-      - ${PUBLIC_DIR}:/app/public
-      - /app/node_modules
+    build:
+      context: .
+      dockerfile: Dockerfile
     ports:
-      - "3000:3000"
-    command: sh -c "npm install && npm run build && npm start"
-
+      - '3000:3000' # Map the container port to your host port
+    environment:
+      - NODE_ENV=production
+    restart: always
