@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
-      - name: Git pull
+      - name: Git pull 
         uses: actions/checkout@v2
 
       - name: Docker Hub login
