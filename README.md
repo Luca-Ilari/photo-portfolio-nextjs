@@ -13,3 +13,21 @@ npm run dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+
+## Images Folder Structure
+
+Each subfolder inside the images directory becomes a gallery, accessible at `/<gallery-name>`.
+
+```
+public/
+├── gallery-name/
+│   ├── photo1.jpg
+│   ├── photo2.png
+│   └── ...
+├── another-gallery/
+│   ├── photo1.jpg
+│   └── ...
+└── ...
+```
+
+Supported formats: `.jpg`, `.jpeg`, `.png`, `.gif`

@@ -1,10 +1,10 @@
-FROM node:20-alpine
+FROM node:26.3-alpine
 
 WORKDIR /app
 
 COPY package*.json ./
 
-RUN npm install
+RUN npm ci
 
 COPY . .
 

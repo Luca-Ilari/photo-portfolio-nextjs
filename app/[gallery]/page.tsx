@@ -47,13 +47,14 @@ const getImages = async (galleryName: string): Promise<imagesProperty[]> => {
     return fileNamesProperty;
 };
 
-const GalleryPage = async ({ params }: { params: { gallery: string } }) => {
-    const images: imagesProperty[] = await getImages(params.gallery);
-    const gallerySettings: galleryProperty = await getGallerySettings(params.gallery);
+const GalleryPage = async ({ params }: { params: Promise<{ gallery: string }> }) => {
+    const { gallery } = await params;
+    const images: imagesProperty[] = await getImages(gallery);
+    const gallerySettings: galleryProperty = await getGallerySettings(gallery);
 
     return (
         <>
-            <Gallery galleryName={params.gallery} images={images}>
+            <Gallery galleryName={gallery} images={images}>
                 <GalleryDescription title={gallerySettings.title} date={gallerySettings.date} />
             </Gallery>
         </>
