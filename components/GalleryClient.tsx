@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useCallback, useEffect, useRef, useMemo } from "react";
+import { createPortal } from "react-dom";
 import Image from "next/image";
 import Link from "next/link";
 import { imagesProperty, galleryProperty } from "@/actions/actions";
@@ -307,7 +308,7 @@ export default function GalleryClient({ images, allFolders, currentSlug, title }
                 </div>
             </section>
 
-            {isOpen && current && (
+            {isOpen && current && createPortal(
                 <div
                     ref={dialogRef}
                     role="dialog"
@@ -411,7 +412,8 @@ export default function GalleryClient({ images, allFolders, currentSlug, title }
                             />
                         ))}
                     </div>
-                </div>
+                </div>,
+                document.body
             )}
         </>
     );
