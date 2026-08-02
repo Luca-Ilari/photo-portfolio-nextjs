@@ -82,16 +82,17 @@ export default function GalleryClient({ images, allFolders, currentSlug, title }
             const to = fig.getBoundingClientRect();
             if (!to.width || !to.height) return;
 
-            const scaleX = from.width / to.width;
-            const scaleY = from.height / to.height;
+            const scale = Math.min(1, Math.max(from.width / to.width, from.height / to.height));
             const dx = from.left + from.width / 2 - (to.left + to.width / 2);
             const dy = from.top + from.height / 2 - (to.top + to.height / 2);
 
             fig.style.transition = "none";
-            fig.style.transform = `translate3d(${dx}px,${dy}px,0) scale(${scaleX},${scaleY})`;
+            fig.style.transform = `translate3d(${dx}px,${dy}px,0) scale(${scale})`;
+            fig.style.opacity = "0";
             void fig.offsetWidth;
-            fig.style.transition = "transform .82s cubic-bezier(.16,1,.3,1)";
-            fig.style.transform = "translate3d(0,0,0) scale(1,1)";
+            fig.style.transition = "transform .7s cubic-bezier(.16,1,.3,1), opacity .35s ease";
+            fig.style.transform = "translate3d(0,0,0) scale(1)";
+            fig.style.opacity = "1";
         });
 
         return () => cancelAnimationFrame(raf);
@@ -315,7 +316,8 @@ export default function GalleryClient({ images, allFolders, currentSlug, title }
                     tabIndex={-1}
                     style={{
                         position: "fixed", inset: 0, zIndex: 200,
-                        background: "rgba(8,8,10,.97)", display: "flex", flexDirection: "column",
+                        background: "#08080a",
+                        display: "grid", gridTemplateRows: "auto minmax(0,1fr) auto",
                         animation: "fadeIn .22s ease both", outline: "none",
                     }}
                 >
@@ -331,95 +333,68 @@ export default function GalleryClient({ images, allFolders, currentSlug, title }
                         }}
                     />
 
-                    <div style={{
-                        position: "relative", flexShrink: 0, display: "flex", alignItems: "center",
-                        justifyContent: "space-between", gap: 14,
-                        padding: "clamp(10px,2vh,16px) clamp(14px,3.5vw,40px)",
-                        fontSize: 10, letterSpacing: ".24em", textTransform: "uppercase",
-                    }}>
+                    <div className="lb-bar lb-bar-top">
                         <span style={{ opacity: .45 }}>
                             {seriesIndex(lbIndex)} / {String(images.length).padStart(2, "0")}
                         </span>
-                        <button type="button" onClick={close} className="btn-close">
-                            Close ✕
+                        <button type="button" onClick={close} className="lb-close" aria-label="Close viewer">
+                            <span>Close</span>
+                            <span aria-hidden="true">✕</span>
                         </button>
                     </div>
 
-                    <div style={{
-                        position: "relative", flex: 1, minHeight: 0,
-                        display: "flex", alignItems: "center", justifyContent: "center",
-                        padding: "0 clamp(8px,3vw,56px)", overflow: "hidden",
-                    }}>
-                        <div ref={figRef} style={{
-                            position: "relative", maxWidth: "100%", maxHeight: "100%",
-                            display: "flex", alignItems: "center", justifyContent: "center",
-                            willChange: "transform",
-                        }}>
+                    <div className="lb-stage">
+                        <div ref={figRef} className="lb-figure">
                             <Image
                                 key={current.fileUrl}
                                 src={current.fileUrl}
                                 alt={`${title} — shot ${lbIndex + 1}`}
-                                width={current.width || 2400}
-                                height={current.height || 1600}
+                                fill
                                 sizes={FULL_SIZES}
                                 quality={92}
-                                placeholder="blur"
-                                blurDataURL={current.blurDataURL}
                                 priority
                                 onLoad={() => setLbLoading(false)}
-                                style={{
-                                    width: "auto", height: "auto",
-                                    maxWidth: "100%", maxHeight: "100%",
-                                    objectFit: "contain",
-                                    userSelect: "none", display: "block",
-                                }}
+                                style={{ objectFit: "contain", userSelect: "none" }}
                             />
-                            {lbLoading && (
-                                <span
-                                    aria-hidden="true"
-                                    style={{
-                                        position: "absolute", bottom: 12, right: 12,
-                                        width: 18, height: 18, borderRadius: "50%",
-                                        border: "1.5px solid rgba(237,234,229,.2)", borderTopColor: "#ff3b1f",
-                                        animation: "spin .7s linear infinite", zIndex: 2,
-                                    }}
-                                />
-                            )}
                         </div>
+
+                        {images.length > 1 && (
+                            <>
+                                <button
+                                    type="button"
+                                    onClick={() => step(-1)}
+                                    className="lb-nav lb-nav-prev"
+                                    aria-label="Previous photo"
+                                >
+                                    ←
+                                </button>
+                                <button
+                                    type="button"
+                                    onClick={() => step(1)}
+                                    className="lb-nav lb-nav-next"
+                                    aria-label="Next photo"
+                                >
+                                    →
+                                </button>
+                            </>
+                        )}
+
+                        {lbLoading && <span className="lb-spinner" aria-hidden="true" />}
                     </div>
 
-                    <div style={{
-                        position: "relative", flexShrink: 0, display: "flex", alignItems: "center",
-                        justifyContent: "space-between", gap: 14,
-                        padding: "clamp(10px,2vh,14px) clamp(14px,3.5vw,40px) clamp(16px,4vh,28px)",
-                    }}>
-                        {images.length > 1 && (
-                            <button type="button" onClick={() => step(-1)} className="btn-nav" aria-label="Previous photo">←</button>
-                        )}
-                        <span style={{
-                            flex: 1, display: "flex", flexDirection: "column", alignItems: "center", gap: 6,
-                            minWidth: 0,
-                        }}>
-                            <span style={{
-                                maxWidth: "100%",
-                                fontSize: 9, letterSpacing: ".22em", textTransform: "uppercase",
-                                opacity: .35, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap",
-                            }}>
-                                {current.fileName.replace(/\.[^.]+$/, "")}
-                                {current.width > 0 && ` · ${current.width}×${current.height}`}
-                            </span>
-                            <a
-                                href={current.fileUrl}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="lb-original"
-                            >
-                                Original file ↗
-                            </a>
+                    <div className="lb-bar lb-bar-bottom">
+                        <span className="lb-meta">
+                            {current.fileName.replace(/\.[^.]+$/, "")}
+                            {current.width > 0 && ` · ${current.width}×${current.height}`}
                         </span>
-                        {images.length > 1 && (
-                            <button type="button" onClick={() => step(1)} className="btn-nav" aria-label="Next photo">→</button>
-                        )}
+                        <a
+                            href={current.fileUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="lb-original"
+                        >
+                            Original file ↗
+                        </a>
                     </div>
 
                     <div aria-hidden="true" style={{ position: "absolute", width: 1, height: 1, overflow: "hidden", opacity: 0, pointerEvents: "none" }}>
