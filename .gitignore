@@ -26,6 +26,7 @@ yarn-debug.log*
 yarn-error.log*
 
 # local env files
+.env
 .env*.local
 
 # vercel
@@ -35,6 +36,17 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-/public/
+# editors
 /.idea
-.env
+/.vscode
+
+# archivio foto (montato a runtime, non versionato)
+# nota: serve /public/* e non /public/, altrimenti git non entra nella
+# cartella e le negazioni qui sotto non hanno effetto
+/public/*
+!/public/_template-album/
+
+# scratch
+/site
+/temp-foto-portfolio
+*.tmp
