@@ -7,7 +7,7 @@ import Link from "next/link";
 import { imagesProperty, galleryProperty } from "@/actions/actions";
 import { chapterCountLabel, formatDate, seriesIndex } from "@/lib/format";
 
-const GRID_SIZES = "(max-width: 1600px) 34vw, 520px";
+const GRID_SIZES = "(max-width: 700px) 60vw, (max-width: 1200px) 40vw, 520px";
 const CARD_SIZES = "(max-width: 640px) 100vw, (max-width: 1100px) 50vw, 340px";
 const FULL_SIZES = "100vw";
 
@@ -194,28 +194,21 @@ export default function GalleryClient({ images, allFolders, currentSlug, title }
     return (
         <>
             <section style={{ padding: "0 clamp(14px,3.5vw,44px) clamp(60px,12vh,150px)" }}>
-                <div style={{
-                    maxWidth: 1500, margin: "0 auto",
-                    display: "grid",
-                    gridTemplateColumns: "repeat(3, 1fr)",
-                    gap: 0,
-                    alignItems: "start",
-                }}>
+                <div className="gc-grid" style={{ maxWidth: 1500, margin: "0 auto" }}>
                     {images.map((image, index) => {
+                        const ratio = image.width && image.height ? image.width / image.height : 3 / 2;
                         const delay = Math.min(index * 40, 600);
                         return (
                             <button
                                 key={image.fileName}
                                 type="button"
+                                className="gc-item"
                                 onClick={(event) => open(index, event.currentTarget.getBoundingClientRect())}
                                 aria-label={`Open full screen: ${title}, shot ${index + 1} of ${images.length}`}
                                 style={{
-                                    appearance: "none", padding: 0, border: 0,
-                                    background: "#101014", display: "block", width: "100%",
-                                    position: "relative", overflow: "hidden",
-                                    cursor: "zoom-in", aspectRatio: "1",
+                                    "--r": ratio,
                                     animation: `gridItemIn .7s cubic-bezier(.16,1,.3,1) ${delay}ms both`,
-                                }}
+                                } as React.CSSProperties}
                             >
                                 <Image
                                     src={image.fileUrl}
@@ -238,6 +231,7 @@ export default function GalleryClient({ images, allFolders, currentSlug, title }
                             </button>
                         );
                     })}
+                    <span className="gc-filler" aria-hidden="true" />
                 </div>
             </section>
 

@@ -315,6 +315,35 @@ button { font-family: inherit; cursor: pointer; }
   display: flex; flex-direction: column; gap: 6px;
 }
 
+.gc-grid {
+  --row-h: clamp(160px, 21vw, 320px);
+  display: flex;
+  flex-wrap: wrap;
+  gap: clamp(5px, .7vw, 12px);
+}
+
+.gc-item {
+  position: relative;
+  flex: var(--r) 1 calc(var(--r) * var(--row-h));
+  aspect-ratio: var(--r);
+  appearance: none;
+  padding: 0;
+  border: 0;
+  background: #101014;
+  overflow: hidden;
+  cursor: zoom-in;
+}
+
+.gc-filler {
+  flex: 999 1 0;
+  height: 0;
+  min-width: 0;
+}
+
+@media (max-width: 520px) {
+  .gc-grid { --row-h: clamp(140px, 40vw, 220px); }
+}
+
 .gc-caption {
   position: absolute; inset: auto 0 0 0; z-index: 1;
   padding: 36px 14px 12px;
