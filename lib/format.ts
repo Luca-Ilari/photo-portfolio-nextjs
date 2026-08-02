@@ -4,11 +4,11 @@ export function formatDate(date: string | undefined): string {
 }
 
 export function photoCountLabel(count: number): string {
-    return `${count} ${count === 1 ? "scatto" : "scatti"}`;
+    return `${count} ${count === 1 ? "shot" : "shots"}`;
 }
 
 export function chapterCountLabel(count: number): string {
-    return `${count} ${count === 1 ? "capitolo" : "capitoli"}`;
+    return `${count} ${count === 1 ? "chapter" : "chapters"}`;
 }
 
 export function seriesIndex(position: number): string {

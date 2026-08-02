@@ -89,7 +89,7 @@ async function readImage(
             blurDataURL: `data:image/webp;base64,${preview.toString("base64")}`,
         };
     } catch {
-        console.error(`[gallery] immagine illeggibile: ${galleryName}/${fileName}`);
+        console.error(`[gallery] unreadable image: ${galleryName}/${fileName}`);
         return null;
     }
 }
@@ -113,7 +113,7 @@ export async function getGallerySettings(folderName: string): Promise<galleryPro
             blurb: typeof parsed.blurb === "string" ? parsed.blurb : undefined,
         };
     } catch {
-        console.error(`[gallery] settings.json malformato in: ${folderName}`);
+        console.error(`[gallery] malformed settings.json in: ${folderName}`);
         return empty;
     }
 }
@@ -123,7 +123,7 @@ export async function getFolders(): Promise<galleryProperty[]> {
     try {
         entries = fs.readdirSync(PUBLIC_DIR, { withFileTypes: true });
     } catch (error) {
-        console.error("[gallery] impossibile leggere public/", error);
+        console.error("[gallery] unable to read public/", error);
         return [];
     }
 

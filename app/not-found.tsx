@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-    title: "Serie non trovata",
+    title: "Series not found",
     robots: { index: false, follow: false },
 };
 
@@ -20,7 +20,7 @@ export default function NotFound() {
             }}
         >
             <p style={{ margin: 0, fontSize: 10, letterSpacing: ".3em", textTransform: "uppercase", opacity: .5 }}>
-                Errore 404
+                Error 404
             </p>
             <h1
                 style={{
@@ -33,13 +33,13 @@ export default function NotFound() {
                     textTransform: "uppercase",
                 }}
             >
-                Serie<br />
-                <span style={{ color: "#ff3b1f" }}>non trovata</span>
+                Series<br />
+                <span style={{ color: "#ff3b1f" }}>not found</span>
             </h1>
             <p style={{ margin: 0, maxWidth: "48ch", fontSize: "clamp(12px,1.4vw,14px)", lineHeight: 1.85, opacity: .6 }}>
-                La pagina che cerchi non esiste o la serie è stata rimossa dall&apos;archivio.
+                The page you are looking for does not exist, or the series was removed from the archive.
             </p>
-            <Link href="/" className="next-arrow" aria-label="Torna all'archivio" style={{ marginTop: 8 }}>
+            <Link href="/" className="next-arrow" aria-label="Back to the archive" style={{ marginTop: 8 }}>
                 ←
             </Link>
         </main>

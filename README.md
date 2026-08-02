@@ -1,26 +1,26 @@
 # Luca Ilari — Photo Portfolio
 
-Portfolio fotografico motorsport. Next.js 15 (App Router), zero database: ogni cartella dentro
-`public/` con un `settings.json` diventa una serie pubblicata su `/<nome-cartella>`.
+Motorsport photography portfolio. Next.js 15 (App Router), no database: every folder inside
+`public/` that contains a `settings.json` becomes a series published at `/<folder-name>`.
 
-## Sviluppo
+## Development
 
 ```bash
 npm install
 npm run dev
 ```
 
-Apri [http://localhost:3000](http://localhost:3000).
+Open [http://localhost:3000](http://localhost:3000).
 
-| Comando | Cosa fa |
+| Command | What it does |
 |---|---|
-| `npm run dev` | Server di sviluppo |
-| `npm run build` | Build di produzione |
-| `npm start` | Avvia la build di produzione |
+| `npm run dev` | Development server |
+| `npm run build` | Production build |
+| `npm start` | Serve the production build |
 | `npm run lint` | ESLint |
-| `npm run typecheck` | Controllo dei tipi TypeScript |
+| `npm run typecheck` | TypeScript type checking |
 
-## Struttura dell'archivio
+## Archive structure
 
 ```
 public/
@@ -31,15 +31,15 @@ public/
 ├── monza-2026-07-25/
 │   ├── settings.json
 │   └── ...
-└── _template-album/        cartelle con "_" sono ignorate
+└── _template-album/        folders starting with "_" are ignored
     └── settings.json
 ```
 
-Formati supportati: `.jpg` `.jpeg` `.png` `.webp` `.avif` `.gif`
+Supported formats: `.jpg` `.jpeg` `.png` `.webp` `.avif` `.gif`
 
-Per pubblicare un album: crea la cartella, mettici le foto alla massima risoluzione che hai
-(le versioni leggere le genera il sito) e aggiungi un `settings.json`. Poi ricarica la pagina,
-non serve riavviare niente. Puoi partire da `public/_template-album/settings.json`.
+To publish an album: create the folder, drop in the photos at the highest resolution you have
+(the site generates the lightweight versions itself) and add a `settings.json`. Then reload the
+page — nothing needs restarting. You can start from `public/_template-album/settings.json`.
 
 ```json
 {
@@ -47,70 +47,70 @@ non serve riavviare niente. Puoi partire da `public/_template-album/settings.jso
   "preview_image": "DSC01234.jpg",
   "date": "2026-07-25",
   "circuit": "Autodromo Nazionale Monza",
-  "blurb": "Descrizione breve, appare sotto il titolo."
+  "blurb": "Short description, shown under the title."
 }
 ```
 
-`title`, `preview_image` e `date` sono obbligatori — `date` in formato `YYYY-MM-DD`, ordina gli
-album dal più recente. `circuit` e `blurb` sono facoltativi. Le cartelle che iniziano con `_` o `.`,
-o senza `settings.json` valido, vengono ignorate; le foto seguono l'ordine alfabetico del nome file
-e vengono raddrizzate leggendo l'EXIF.
+`title`, `preview_image` and `date` are required — `date` in `YYYY-MM-DD` format, it sorts albums
+newest first. `circuit` and `blurb` are optional. Folders starting with `_` or `.`, or without a
+valid `settings.json`, are ignored; photos follow the alphabetical order of their filename and are
+straightened automatically by reading the EXIF orientation.
 
-Le foto **non sono versionate** (`public/` è in `.gitignore`): l'archivio si monta a runtime.
+Photos are **not versioned** (`public/` is in `.gitignore`): the archive is mounted at runtime.
 
 ## Docker
 
-L'immagine è costruita senza foto. La cartella con gli album si monta su `/app/public`.
+The image is built without photos. The album folder is mounted at `/app/public`.
 
-Il Dockerfile imposta `NEXT_OUTPUT=standalone`, che attiva l'output snello di Next. In locale la
-variabile non c'è, così `next build` produce l'output normale e `npm start` continua a funzionare
-(`next start` non è compatibile con `output: "standalone"`).
+The Dockerfile sets `NEXT_OUTPUT=standalone`, which enables Next's slim output. Locally that
+variable is absent, so `next build` produces the normal output and `npm start` keeps working
+(`next start` is not compatible with `output: "standalone"`).
 
 ```bash
-# usa ./public
+# use ./public
 docker compose up --build
 
-# usa un archivio esterno
-PHOTOS_DIR=/mnt/nas/foto-portfolio \
+# use an external archive
+PHOTOS_DIR=/mnt/nas/photo-portfolio \
 NEXT_PUBLIC_SITE_URL=https://lucailari.photo \
 docker compose up --build
 ```
 
-Oppure con un `.env` accanto al `docker-compose.yml`:
+Or with a `.env` file next to `docker-compose.yml`:
 
 ```dotenv
-PHOTOS_DIR=/mnt/nas/foto-portfolio
+PHOTOS_DIR=/mnt/nas/photo-portfolio
 NEXT_PUBLIC_SITE_URL=https://lucailari.photo
 ```
 
-| Variabile | Default | Cosa fa |
+| Variable | Default | What it does |
 |---|---|---|
-| `PHOTOS_DIR` | `./public` | Cartella host montata in sola lettura su `/app/public` |
-| `NEXT_PUBLIC_SITE_URL` | `http://localhost:3000` | URL pubblico, usato per canonical, Open Graph e sitemap |
+| `PHOTOS_DIR` | `./public` | Host folder mounted read-only at `/app/public` |
+| `NEXT_PUBLIC_SITE_URL` | `http://localhost:3000` | Public URL, used for canonical, Open Graph and sitemap |
 
-Il volume `image-cache` conserva le versioni ottimizzate delle immagini tra un riavvio e l'altro:
-non cancellarlo se non vuoi rigenerarle tutte.
+The `image-cache` volume keeps the optimized image variants between restarts: don't delete it
+unless you want them all regenerated.
 
-## Come vengono servite le foto
+## How photos are served
 
-Le immagini passano tutte da `next/image`, quindi il browser riceve AVIF/WebP ridimensionato
-sulla misura reale del contenitore, non il JPEG originale:
+Every image goes through `next/image`, so the browser receives resized AVIF/WebP matching the
+real size of its container, never the original JPEG:
 
-- **card archivio** `quality` 82 · **griglia galleria** 85 · **strip** 88 · **cover e hero** 90
-- **placeholder** — anteprima WebP da 24px generata con `sharp` e incorporata nell'HTML,
-  così il layout non salta mai e c'è sempre qualcosa a schermo
-- **lightbox** — `quality` 92 con `srcset` fino a 3840px: è qui che arriva l'alta risoluzione,
-  con precaricamento della foto precedente e successiva e link al file originale
+- **archive cards** `quality` 82 · **gallery grid** 85 · **strip** 88 · **cover and hero** 90
+- **placeholder** — a 24px WebP preview generated with `sharp` and inlined into the HTML, so the
+  layout never shifts and there is always something on screen
+- **lightbox** — `quality` 92 with an `srcset` up to 3840px: this is where the high resolution
+  lands, with the previous and next photo preloaded and a link to the original file
 
-Solo l'hero si carica subito (~177 KB); le altre 39 immagini della homepage sono lazy.
+Only the hero loads immediately (~177 KB); the other 39 images on the home page are lazy.
 
-⚠️ **Se aggiungi un `transform: scale()` a un'immagine, aggiorna anche il suo `sizes`.**
-La strip renderizza le foto a `scale(1.16)` per il parallasse: `sizes` dichiara 960px
-(non 828px) proprio per compensare, altrimenti il browser scarica una variante troppo
-piccola e la ingrandisce, con perdita visibile di nitidezza.
+⚠️ **If you add a `transform: scale()` to an image, update its `sizes` too.**
+The strip renders photos at `scale(1.16)` for the parallax effect: `sizes` declares 960px
+(not 828px) precisely to compensate, otherwise the browser downloads a variant that is too small
+and scales it up, with a visible loss of sharpness.
 
-I valori ammessi di `quality` sono nell'allowlist `images.qualities` di `next.config.mjs`:
-un valore fuori lista viene rifiutato con 400, non servito male in silenzio.
+Allowed `quality` values live in the `images.qualities` allowlist in `next.config.mjs`: a value
+outside that list is rejected with a 400 rather than silently served badly.
 
-Dimensioni e orientamento EXIF di ogni foto sono letti una volta sola e tenuti in cache in memoria,
-con invalidazione su `mtime` + dimensione del file: sostituisci una foto e riparte da sola.
+Image dimensions and EXIF orientation are read once and cached in memory, invalidated on file
+`mtime` + size: replace a photo and it picks the change up on its own.

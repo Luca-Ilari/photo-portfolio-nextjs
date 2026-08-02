@@ -25,26 +25,26 @@ const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://lucailari.photo";
 export const metadata: Metadata = {
     metadataBase: new URL(siteUrl),
     title: {
-        default: "Luca Ilari — Fotografia Motorsport",
+        default: "Luca Ilari — Motorsport Photography",
         template: "%s — Luca Ilari",
     },
     description:
-        "Portfolio fotografico di Luca Ilari. Motorsport, panning, WEC · GT · Storiche.",
+        "Photography portfolio by Luca Ilari. Motorsport, panning, WEC · GT · Historics.",
     alternates: { canonical: "/" },
     openGraph: {
         type: "website",
         siteName: "Luca Ilari",
-        locale: "it_IT",
+        locale: "en_GB",
         url: "/",
-        title: "Luca Ilari — Fotografia Motorsport",
+        title: "Luca Ilari — Motorsport Photography",
         description:
-            "Portfolio fotografico di Luca Ilari. Motorsport, panning, WEC · GT · Storiche.",
+            "Photography portfolio by Luca Ilari. Motorsport, panning, WEC · GT · Historics.",
     },
     twitter: {
         card: "summary_large_image",
-        title: "Luca Ilari — Fotografia Motorsport",
+        title: "Luca Ilari — Motorsport Photography",
         description:
-            "Portfolio fotografico di Luca Ilari. Motorsport, panning, WEC · GT · Storiche.",
+            "Photography portfolio by Luca Ilari. Motorsport, panning, WEC · GT · Historics.",
     },
     robots: { index: true, follow: true },
 };
@@ -58,7 +58,7 @@ export default function RootLayout({
     children,
 }: Readonly<{ children: React.ReactNode }>) {
     return (
-        <html lang="it" className={`${jetbrainsMono.variable} ${archivo.variable}`}>
+        <html lang="en" className={`${jetbrainsMono.variable} ${archivo.variable}`}>
             <body>
                 <ScrollProgress />
 

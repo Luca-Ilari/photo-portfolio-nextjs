@@ -19,13 +19,13 @@ export default function NextSeriesSection({ href, title }: NextSeriesSectionProp
       }}>
         <div>
           <p style={{ margin: "0 0 12px", fontSize: 10, letterSpacing: ".28em", textTransform: "uppercase", opacity: .5 }}>
-            Serie successiva
+            Next series
           </p>
           <Link href={href} className="next-title">
             {title}
           </Link>
         </div>
-        <Link href={href} aria-label={`Vai a ${title}`} className="next-arrow">
+        <Link href={href} aria-label={`Go to ${title}`} className="next-arrow">
           →
         </Link>
       </div>

@@ -207,7 +207,7 @@ export default function GalleryClient({ images, allFolders, currentSlug, title }
                                 key={image.fileName}
                                 type="button"
                                 onClick={(event) => open(index, event.currentTarget.getBoundingClientRect())}
-                                aria-label={`Apri a schermo intero: ${title}, scatto ${index + 1} di ${images.length}`}
+                                aria-label={`Open full screen: ${title}, shot ${index + 1} of ${images.length}`}
                                 style={{
                                     appearance: "none", padding: 0, border: 0,
                                     background: "#101014", display: "block", width: "100%",
@@ -218,7 +218,7 @@ export default function GalleryClient({ images, allFolders, currentSlug, title }
                             >
                                 <Image
                                     src={image.fileUrl}
-                                    alt={`${title} — scatto ${index + 1}`}
+                                    alt={`${title} — shot ${index + 1}`}
                                     fill
                                     sizes={GRID_SIZES}
                                     quality={85}
@@ -232,7 +232,7 @@ export default function GalleryClient({ images, allFolders, currentSlug, title }
                                 />
                                 <span className="gc-caption">
                                     <span style={{ opacity: 0.5 }}>{seriesIndex(index)}</span>
-                                    <span>Apri ↗</span>
+                                    <span>Open ↗</span>
                                 </span>
                             </button>
                         );
@@ -250,7 +250,7 @@ export default function GalleryClient({ images, allFolders, currentSlug, title }
                         justifyContent: "space-between", gap: 16,
                         marginBottom: "clamp(24px,4vh,44px)",
                     }}>
-                        <p data-reveal style={{ margin: 0, fontSize: 10, letterSpacing: ".3em", textTransform: "uppercase", opacity: .5 }}>Tutte le serie</p>
+                        <p data-reveal style={{ margin: 0, fontSize: 10, letterSpacing: ".3em", textTransform: "uppercase", opacity: .5 }}>All series</p>
                         <p data-reveal style={{ margin: 0, fontSize: 10, letterSpacing: ".24em", textTransform: "uppercase", opacity: .4 }}>{chapterCountLabel(allFolders.length)}</p>
                     </div>
                     <div style={{
@@ -288,7 +288,7 @@ export default function GalleryClient({ images, allFolders, currentSlug, title }
                                     <span className="album-card-overlay" aria-hidden="true" />
                                     <span className="album-card-body">
                                         <span style={{ fontSize: 9, letterSpacing: ".26em", textTransform: "uppercase", color: isCurrent ? "#ff3b1f" : "rgba(237,234,229,.55)" }}>
-                                            {seriesIndex(index)} · {formatDate(gallery.date)}{isCurrent && " · in corso"}
+                                            {seriesIndex(index)} · {formatDate(gallery.date)}{isCurrent && " · current"}
                                         </span>
                                         <span style={{ fontFamily: "var(--font-archivo), system-ui, sans-serif", fontWeight: 800, fontSize: "clamp(.9rem,1.7vw,1.35rem)", lineHeight: 1.05, letterSpacing: "-.02em", textTransform: "uppercase", color: "#edeae5" }}>
                                             {gallery.title}
@@ -311,7 +311,7 @@ export default function GalleryClient({ images, allFolders, currentSlug, title }
                     ref={dialogRef}
                     role="dialog"
                     aria-modal="true"
-                    aria-label={`${title} — scatto ${lbIndex + 1} di ${images.length}`}
+                    aria-label={`${title} — shot ${lbIndex + 1} of ${images.length}`}
                     tabIndex={-1}
                     style={{
                         position: "fixed", inset: 0, zIndex: 200,
@@ -341,7 +341,7 @@ export default function GalleryClient({ images, allFolders, currentSlug, title }
                             {seriesIndex(lbIndex)} / {String(images.length).padStart(2, "0")}
                         </span>
                         <button type="button" onClick={close} className="btn-close">
-                            Chiudi ✕
+                            Close ✕
                         </button>
                     </div>
 
@@ -358,7 +358,7 @@ export default function GalleryClient({ images, allFolders, currentSlug, title }
                             <Image
                                 key={current.fileUrl}
                                 src={current.fileUrl}
-                                alt={`${title} — scatto ${lbIndex + 1}`}
+                                alt={`${title} — shot ${lbIndex + 1}`}
                                 width={current.width || 2400}
                                 height={current.height || 1600}
                                 sizes={FULL_SIZES}
@@ -394,7 +394,7 @@ export default function GalleryClient({ images, allFolders, currentSlug, title }
                         padding: "clamp(10px,2vh,14px) clamp(14px,3.5vw,40px) clamp(16px,4vh,28px)",
                     }}>
                         {images.length > 1 && (
-                            <button type="button" onClick={() => step(-1)} className="btn-nav" aria-label="Foto precedente">←</button>
+                            <button type="button" onClick={() => step(-1)} className="btn-nav" aria-label="Previous photo">←</button>
                         )}
                         <span style={{
                             flex: 1, display: "flex", flexDirection: "column", alignItems: "center", gap: 6,
@@ -414,11 +414,11 @@ export default function GalleryClient({ images, allFolders, currentSlug, title }
                                 rel="noopener noreferrer"
                                 className="lb-original"
                             >
-                                File originale ↗
+                                Original file ↗
                             </a>
                         </span>
                         {images.length > 1 && (
-                            <button type="button" onClick={() => step(1)} className="btn-nav" aria-label="Foto successiva">→</button>
+                            <button type="button" onClick={() => step(1)} className="btn-nav" aria-label="Next photo">→</button>
                         )}
                     </div>
 

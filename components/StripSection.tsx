@@ -51,7 +51,7 @@ export default function StripSection({ slug, title, index, countLabel, photos }:
                             }}>
                                 <Image
                                     src={photo.fileUrl}
-                                    alt={`${title} — scatto ${position + 1}`}
+                                    alt={`${title} — shot ${position + 1}`}
                                     data-strip-img
                                     fill
                                     sizes={STRIP_SIZES}
@@ -76,13 +76,13 @@ export default function StripSection({ slug, title, index, countLabel, photos }:
                         );
                     })}
 
-                    <Link href={`/${slug}`} className="btn-serie" aria-label={`Apri la serie ${title}`}>
+                    <Link href={`/${slug}`} className="btn-series" aria-label={`Open the ${title} series`}>
                         <span style={{
                             fontFamily: "var(--font-archivo), system-ui, sans-serif", fontWeight: 800,
                             fontSize: "clamp(1.2rem,2.4vw,2rem)", lineHeight: 1.05,
                             letterSpacing: "-.03em", textTransform: "uppercase",
                         }}>
-                            Tutta la serie
+                            Full series
                         </span>
                         <span style={{ fontSize: 10, letterSpacing: ".26em", textTransform: "uppercase", opacity: .6 }}>
                             {countLabel} →

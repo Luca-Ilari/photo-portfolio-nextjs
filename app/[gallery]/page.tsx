@@ -18,13 +18,13 @@ export async function generateMetadata({ params }: GalleryPageProps): Promise<Me
     const settings = await getGallerySettings(gallery);
 
     if (!settings.title) {
-        return { title: "Serie non trovata" };
+        return { title: "Series not found" };
     }
 
     const description =
         settings.blurb ||
         [settings.circuit, formatDate(settings.date)].filter(Boolean).join(" · ") ||
-        `Serie fotografica ${settings.title} di Luca Ilari.`;
+        `Photo series ${settings.title} by Luca Ilari.`;
 
     return {
         title: settings.title,
@@ -123,7 +123,7 @@ export default async function GalleryPage({ params }: GalleryPageProps) {
                                 textDecoration: "none",
                             }}
                         >
-                            <span aria-hidden="true">←</span><span>Tutte le serie</span>
+                            <span aria-hidden="true">←</span><span>All series</span>
                         </Link>
 
                         <h1
@@ -155,7 +155,7 @@ export default async function GalleryPage({ params }: GalleryPageProps) {
                             {display && <span>{display}</span>}
                             <span>{countLabel}</span>
                             <span style={{ color: "#ff3b1f", opacity: 1 }}>
-                                Tocca per l&apos;alta risoluzione
+                                Tap for high resolution
                             </span>
                         </div>
 

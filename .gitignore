@@ -40,9 +40,9 @@ next-env.d.ts
 /.idea
 /.vscode
 
-# archivio foto (montato a runtime, non versionato)
-# nota: serve /public/* e non /public/, altrimenti git non entra nella
-# cartella e le negazioni qui sotto non hanno effetto
+# photo archive (mounted at runtime, not versioned)
+# note: this must be /public/* and not /public/, otherwise git never descends
+# into the folder and the negations below have no effect
 /public/*
 !/public/_template-album/
 

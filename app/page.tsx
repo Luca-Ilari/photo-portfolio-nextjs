@@ -65,11 +65,11 @@ export default async function Home() {
                         color: "#edeae5",
                     }}>Luca Ilari</span>
                     <a
-                        href="#archivio"
+                        href="#archive"
                         className="jump-archive"
-                        aria-label={`Vai all'archivio: ${albumCount} serie tra cui scegliere`}
+                        aria-label={`Go to the archive: ${albumCount} series to choose from`}
                     >
-                        <span>{albumCount} serie</span>
+                        <span>{albumCount} series</span>
                         <span className="jump-arrow" aria-hidden="true">↓</span>
                     </a>
                 </header>
@@ -172,7 +172,7 @@ export default async function Home() {
 
                     <section style={{ position: "relative", zIndex: 2, padding: "clamp(72px,15vh,170px) clamp(14px,3.5vw,44px) clamp(48px,9vh,110px)" }}>
                         <div style={{ maxWidth: 1320, margin: "0 auto" }}>
-                            <p data-reveal style={{ margin: "0 0 clamp(26px,5vh,54px)", fontSize: 10, letterSpacing: ".3em", textTransform: "uppercase", opacity: .5 }}>01 — Archivio</p>
+                            <p data-reveal style={{ margin: "0 0 clamp(26px,5vh,54px)", fontSize: 10, letterSpacing: ".3em", textTransform: "uppercase", opacity: .5 }}>01 — Archive</p>
                             <blockquote style={{
                                 margin: 0,
                                 maxWidth: "52ch",
@@ -200,15 +200,15 @@ export default async function Home() {
                             <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(160px,1fr))", gap: "clamp(18px,3vw,48px)", marginTop: "clamp(46px,9vh,110px)", paddingTop: 26, borderTop: "1px solid rgba(237,234,229,.14)" }}>
                                 <div data-reveal>
                                     <span data-count={totalPhotos} style={{ display: "block", fontFamily: "var(--font-archivo), system-ui, sans-serif", fontWeight: 800, fontSize: "clamp(2.2rem,5vw,3.6rem)", lineHeight: 1, letterSpacing: "-.03em" }}>0</span>
-                                    <p style={{ margin: "10px 0 0", fontSize: 10, letterSpacing: ".26em", textTransform: "uppercase", opacity: .48 }}>Scatti in archivio</p>
+                                    <p style={{ margin: "10px 0 0", fontSize: 10, letterSpacing: ".26em", textTransform: "uppercase", opacity: .48 }}>Shots archived</p>
                                 </div>
                                 <div data-reveal data-delay="70">
                                     <span data-count={albumCount} style={{ display: "block", fontFamily: "var(--font-archivo), system-ui, sans-serif", fontWeight: 800, fontSize: "clamp(2.2rem,5vw,3.6rem)", lineHeight: 1, letterSpacing: "-.03em" }}>0</span>
-                                    <p style={{ margin: "10px 0 0", fontSize: 10, letterSpacing: ".26em", textTransform: "uppercase", opacity: .48 }}>Capitoli</p>
+                                    <p style={{ margin: "10px 0 0", fontSize: 10, letterSpacing: ".26em", textTransform: "uppercase", opacity: .48 }}>Chapters</p>
                                 </div>
                                 <div data-reveal data-delay="140">
                                     <span data-count={uniqueLocations} style={{ display: "block", fontFamily: "var(--font-archivo), system-ui, sans-serif", fontWeight: 800, fontSize: "clamp(2.2rem,5vw,3.6rem)", lineHeight: 1, letterSpacing: "-.03em" }}>0</span>
-                                    <p style={{ margin: "10px 0 0", fontSize: 10, letterSpacing: ".26em", textTransform: "uppercase", opacity: .48 }}>Luoghi</p>
+                                    <p style={{ margin: "10px 0 0", fontSize: 10, letterSpacing: ".26em", textTransform: "uppercase", opacity: .48 }}>Locations</p>
                                 </div>
                                 <div data-reveal data-delay="210">
                                     <span style={{
@@ -221,7 +221,7 @@ export default async function Home() {
                                         {yearRange}
                                     </span>
                                     <p style={{ margin: "10px 0 0", fontSize: 10, letterSpacing: ".26em", textTransform: "uppercase", opacity: .48 }}>
-                                        {singleYear ? "Anno" : "Anni"}
+                                        {singleYear ? "Year" : "Years"}
                                     </p>
                                 </div>
                             </div>
@@ -273,12 +273,12 @@ export default async function Home() {
 
                     <section style={{ position: "relative", zIndex: 2, padding: "clamp(60px,12vh,140px) clamp(14px,3.5vw,44px) clamp(70px,14vh,160px)" }}>
                         <div
-                            id="archivio"
+                            id="archive"
                             style={{ maxWidth: 1500, margin: "0 auto", scrollMarginTop: "clamp(72px,10vh,110px)" }}
                         >
                             <div style={{ display: "flex", flexWrap: "wrap", alignItems: "flex-end", justifyContent: "space-between", gap: 18 }}>
-                                <p data-reveal style={{ margin: 0, fontSize: 10, letterSpacing: ".3em", textTransform: "uppercase", opacity: .5 }}>Archivio — scegli la serie</p>
-                                <p data-reveal style={{ margin: 0, fontSize: 10, letterSpacing: ".24em", textTransform: "uppercase", opacity: .4 }}>Tocca una foto per aprire</p>
+                                <p data-reveal style={{ margin: 0, fontSize: 10, letterSpacing: ".3em", textTransform: "uppercase", opacity: .5 }}>Archive — choose a series</p>
+                                <p data-reveal style={{ margin: 0, fontSize: 10, letterSpacing: ".24em", textTransform: "uppercase", opacity: .4 }}>Tap a photo to open</p>
                             </div>
                             <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(min(100%,240px),1fr))", gap: "clamp(8px,1.2vw,16px)", marginTop: "clamp(24px,4vh,44px)" }}>
                                 {folders.map((gallery, position) => (
@@ -306,7 +306,7 @@ export default async function Home() {
                                 <a href="https://www.instagram.com/gufo__/" target="_blank" rel="noopener noreferrer" style={{ color: "#edeae5" }}>Instagram</a>
                             </div>
                         </div>
-                        <p style={{ maxWidth: 1320, margin: "clamp(36px,7vh,80px) auto 0", fontSize: 9, letterSpacing: ".2em", textTransform: "uppercase", opacity: .34 }}>© {new Date().getFullYear()} Luca Ilari — Tutti i diritti riservati</p>
+                        <p style={{ maxWidth: 1320, margin: "clamp(36px,7vh,80px) auto 0", fontSize: 9, letterSpacing: ".2em", textTransform: "uppercase", opacity: .34 }}>© {new Date().getFullYear()} Luca Ilari — All rights reserved</p>
                     </footer>
 
                 </main>

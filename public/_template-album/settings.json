@@ -1,7 +1,7 @@
 {
-  "title": "Nome Album",
-  "preview_image": "nome-foto-copertina.jpg",
+  "title": "Album Name",
+  "preview_image": "cover-photo-filename.jpg",
   "date": "2026-01-15",
-  "circuit": "Nome Circuito / Luogo",
-  "blurb": "Descrizione breve dell'album, massimo 2-3 righe. Appare nella pagina della galleria sotto i metadati."
+  "circuit": "Circuit / Location Name",
+  "blurb": "Short album description, 2-3 lines max. Shown on the gallery page under the metadata."
 }
