@@ -7,7 +7,7 @@ import Link from "next/link";
 import { imagesProperty, galleryProperty } from "@/actions/actions";
 import { chapterCountLabel, formatDate, seriesIndex } from "@/lib/format";
 
-const GRID_SIZES = "(max-width: 640px) 100vw, (max-width: 1100px) 50vw, (max-width: 1600px) 33vw, 380px";
+const GRID_SIZES = "(max-width: 1600px) 34vw, 520px";
 const CARD_SIZES = "(max-width: 640px) 100vw, (max-width: 1100px) 50vw, 340px";
 const FULL_SIZES = "100vw";
 
@@ -197,12 +197,11 @@ export default function GalleryClient({ images, allFolders, currentSlug, title }
                 <div style={{
                     maxWidth: 1500, margin: "0 auto",
                     display: "grid",
-                    gridTemplateColumns: "repeat(auto-fill, minmax(min(100%, 300px), 1fr))",
-                    gap: "clamp(6px,1vw,14px)",
+                    gridTemplateColumns: "repeat(3, 1fr)",
+                    gap: 0,
                     alignItems: "start",
                 }}>
                     {images.map((image, index) => {
-                        const ratio = image.width && image.height ? image.width / image.height : 3 / 2;
                         const delay = Math.min(index * 40, 600);
                         return (
                             <button
@@ -214,7 +213,7 @@ export default function GalleryClient({ images, allFolders, currentSlug, title }
                                     appearance: "none", padding: 0, border: 0,
                                     background: "#101014", display: "block", width: "100%",
                                     position: "relative", overflow: "hidden",
-                                    cursor: "zoom-in", aspectRatio: String(ratio),
+                                    cursor: "zoom-in", aspectRatio: "1",
                                     animation: `gridItemIn .7s cubic-bezier(.16,1,.3,1) ${delay}ms both`,
                                 }}
                             >
@@ -318,7 +317,7 @@ export default function GalleryClient({ images, allFolders, currentSlug, title }
                     style={{
                         position: "fixed", inset: 0, zIndex: 200,
                         background: "#08080a",
-                        display: "grid", gridTemplateRows: "auto minmax(0,1fr) auto",
+                        display: "grid", gridTemplateRows: "auto minmax(0,1fr)",
                         animation: "fadeIn .22s ease both", outline: "none",
                     }}
                 >
@@ -381,21 +380,6 @@ export default function GalleryClient({ images, allFolders, currentSlug, title }
                         )}
 
                         {lbLoading && <span className="lb-spinner" aria-hidden="true" />}
-                    </div>
-
-                    <div className="lb-bar lb-bar-bottom">
-                        <span className="lb-meta">
-                            {current.fileName.replace(/\.[^.]+$/, "")}
-                            {current.width > 0 && ` · ${current.width}×${current.height}`}
-                        </span>
-                        <a
-                            href={current.fileUrl}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="lb-original"
-                        >
-                            Original file ↗
-                        </a>
                     </div>
 
                     <div aria-hidden="true" style={{ position: "absolute", width: 1, height: 1, overflow: "hidden", opacity: 0, pointerEvents: "none" }}>

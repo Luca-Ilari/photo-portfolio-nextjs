@@ -173,7 +173,7 @@ export default async function Home() {
                     <section style={{ position: "relative", zIndex: 2, padding: "clamp(72px,15vh,170px) clamp(14px,3.5vw,44px) clamp(48px,9vh,110px)" }}>
                         <div style={{ maxWidth: 1320, margin: "0 auto" }}>
                             <p data-reveal style={{ margin: "0 0 clamp(26px,5vh,54px)", fontSize: 10, letterSpacing: ".3em", textTransform: "uppercase", opacity: .5 }}>01 — Archive</p>
-                            <blockquote style={{
+                            {/* <blockquote style={{
                                 margin: 0,
                                 maxWidth: "52ch",
                                 borderLeft: "2px solid #ff3b1f",
@@ -196,7 +196,7 @@ export default async function Home() {
                                         Now we just look down, and worry about our place in the dirt.
                                     </span>
                                 </p>
-                            </blockquote>
+                            </blockquote> */}
                             <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(160px,1fr))", gap: "clamp(18px,3vw,48px)", marginTop: "clamp(46px,9vh,110px)", paddingTop: 26, borderTop: "1px solid rgba(237,234,229,.14)" }}>
                                 <div data-reveal>
                                     <span data-count={totalPhotos} style={{ display: "block", fontFamily: "var(--font-archivo), system-ui, sans-serif", fontWeight: 800, fontSize: "clamp(2.2rem,5vw,3.6rem)", lineHeight: 1, letterSpacing: "-.03em" }}>0</span>
@@ -298,15 +298,10 @@ export default async function Home() {
                     </section>
 
                     <footer style={{ position: "relative", zIndex: 2, borderTop: "1px solid rgba(237,234,229,.14)", padding: "clamp(52px,11vh,120px) clamp(14px,3.5vw,44px) clamp(28px,5vh,54px)" }}>
-                        <div style={{ maxWidth: 1320, margin: "0 auto", display: "flex", flexWrap: "wrap", alignItems: "flex-end", justifyContent: "space-between", gap: 36 }}>
-                            <div>
-                                <a data-reveal href="mailto:luca.ilari@gmail.com" style={{ fontFamily: "var(--font-archivo), system-ui, sans-serif", fontWeight: 800, fontSize: "clamp(1.3rem,5vw,3.4rem)", lineHeight: 1.02, letterSpacing: "-.03em", color: "#edeae5", wordBreak: "break-word" }}>luca.ilari@gmail.com</a>
-                            </div>
-                            <div data-reveal data-delay="70" style={{ display: "flex", gap: "clamp(14px,3vw,30px)", fontSize: 10, letterSpacing: ".24em", textTransform: "uppercase", opacity: .6 }}>
-                                <a href="https://www.instagram.com/gufo__/" target="_blank" rel="noopener noreferrer" style={{ color: "#edeae5" }}>Instagram</a>
-                            </div>
+                        <div style={{ maxWidth: 1320, margin: "0 auto", display: "flex", flexWrap: "wrap", alignItems: "center", justifyContent: "space-between", gap: "14px clamp(20px,4vw,40px)", fontSize: 9, letterSpacing: ".2em", textTransform: "uppercase" }}>
+                            <p style={{ margin: 0, opacity: .34 }}>© {new Date().getFullYear()} Luca Ilari — All rights reserved</p>
+                            <a data-reveal href="https://www.instagram.com/gufo__/" target="_blank" rel="noopener noreferrer" className="footer-link">Instagram ↗</a>
                         </div>
-                        <p style={{ maxWidth: 1320, margin: "clamp(36px,7vh,80px) auto 0", fontSize: 9, letterSpacing: ".2em", textTransform: "uppercase", opacity: .34 }}>© {new Date().getFullYear()} Luca Ilari — All rights reserved</p>
                     </footer>
 
                 </main>
