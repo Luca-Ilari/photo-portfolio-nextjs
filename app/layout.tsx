@@ -1,35 +1,71 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import localFont from "next/font/local";
+import { Archivo } from "next/font/google";
 import "./globals.css";
+import ScrollProgress from "@/components/ScrollProgress";
 
-// const geistSans = localFont({
-//     src: "./fonts/GeistVF.woff",
-//     variable: "--font-geist-sans",
-//     weight: "100 900",
-// });
-// const geistMono = localFont({
-//     src: "./fonts/GeistMonoVF.woff",
-//     variable: "--font-geist-mono",
-//     weight: "100 900",
-// });
+const jetbrainsMono = localFont({
+    src: [
+        { path: "./fonts/JetBrainsMono-Regular.woff2", weight: "400", style: "normal" },
+        { path: "./fonts/JetBrainsMono-Bold.woff2", weight: "700", style: "normal" },
+    ],
+    variable: "--font-jetbrains",
+    display: "swap",
+});
 
-const myFont = localFont({ src: "./fonts/JetBrainsMono-Bold.woff2"});
+const archivo = Archivo({
+    subsets: ["latin"],
+    weight: ["400", "600", "800"],
+    variable: "--font-archivo",
+    display: "swap",
+});
+
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://lucailari.photo";
 
 export const metadata: Metadata = {
-    title: "Luca Ilari photos",
-    description: "Portfolio",
+    metadataBase: new URL(siteUrl),
+    title: {
+        default: "Luca Ilari — Motorsport Photography",
+        template: "%s — Luca Ilari",
+    },
+    description:
+        "Photography portfolio by Luca Ilari. Motorsport, panning, WEC · GT · Historics.",
+    alternates: { canonical: "/" },
+    openGraph: {
+        type: "website",
+        siteName: "Luca Ilari",
+        locale: "en_GB",
+        url: "/",
+        title: "Luca Ilari — Motorsport Photography",
+        description:
+            "Photography portfolio by Luca Ilari. Motorsport, panning, WEC · GT · Historics.",
+    },
+    twitter: {
+        card: "summary_large_image",
+        title: "Luca Ilari — Motorsport Photography",
+        description:
+            "Photography portfolio by Luca Ilari. Motorsport, panning, WEC · GT · Historics.",
+    },
+    robots: { index: true, follow: true },
 };
 
-export const dynamic = "force-dynamic";
+export const viewport: Viewport = {
+    themeColor: "#08080a",
+    colorScheme: "dark",
+};
 
 export default function RootLayout({
     children,
-}: Readonly<{
-    children: React.ReactNode;
-}>) {
+}: Readonly<{ children: React.ReactNode }>) {
     return (
-        <html lang="en">
-            <body className={`${myFont.className}`}>{children}</body>
+        <html lang="en" className={`${jetbrainsMono.variable} ${archivo.variable}`}>
+            <body>
+                <ScrollProgress />
+
+                <div className="grain" aria-hidden="true" />
+
+                {children}
+            </body>
         </html>
     );
 }

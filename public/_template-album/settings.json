@@ -1,0 +1,7 @@
+{
+  "title": "Album Name",
+  "preview_image": "cover-photo-filename.jpg",
+  "date": "2026-01-15",
+  "circuit": "Circuit / Location Name",
+  "blurb": "Short album description, 2-3 lines max. Shown on the gallery page under the metadata."
+}
